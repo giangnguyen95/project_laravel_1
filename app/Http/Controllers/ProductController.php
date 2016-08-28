@@ -9,13 +9,22 @@ use Request;
 use App\Product;
 use App\Cate;
 use App\ProductImage;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
+//use Illuminate\Support\Facades\Request;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 
+use Auth;
 
 class ProductController extends Controller
 {
     // 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
     	$products = Product::all();
     	return view('admin.product.list', compact('products'));
@@ -44,7 +53,7 @@ class ProductController extends Controller
         $product->image = $file_name;
         $product->keywords = $request->txtKeywords;
         $product->description = $request->txtDescription;
-        $product->user_id = 1;
+        $product->user_id = Auth::user()->id;
         $product->cate_id = $request->parent;
         $image->move('resources/upload', $file_name);
         $product->save();
@@ -83,7 +92,7 @@ class ProductController extends Controller
         //$product->image = 
         $product->keywords = Request::input('txtKeywords');
         $product->description = Request::input('txtDescription');
-        $product->user_id = 1;
+        $product->user_id = Auth::user()->id;
         $product->cate_id = Request::input('parent');
         //3 buoc: anh phai duc day len co trong db, duoc di chuyen vao trong folder, anh cu bi xoa di.
         $img_current = 'resources/upload/'.Request::input('img_current');
@@ -98,6 +107,20 @@ class ProductController extends Controller
             echo 'Khong co file';
         }
         $product->save();
+
+        if(!empty(Request::file('fEditDetail'))){
+            //print_r(Request::file('fEditDetail'));
+            foreach (Request::file('fEditDetail') as $file) {
+                # code...
+                $product_image = new ProductImage();
+                if(isset($file)){
+                    $product_image->image = $file->getClientOriginalName();
+                    $product_image->product_id = $id;
+                    $file->move('resources/upload/detail', $file->getClientOriginalName());
+                    $product_image->save();
+                }
+            } 
+        }
 
         return redirect('/products')->with(['flash_level'=>'success', 'flash_message'=>'Update Product Success!']);
     }

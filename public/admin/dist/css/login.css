@@ -1,0 +1,48 @@
+body{
+	background-color: #1C1F1B;
+	background-image: url('tuyet_1.png'), url('tuyet_2.png'), url('tuyet_3.png');
+	animation: snowfall 20s linear infinite;
+	-moz-animation: snowfall 20s linear infinite;
+	-ms-animation: snowfall 20s linear infinite;
+}
+
+@keyframes snowfall{
+	0%{
+		background-position: 0px 0px, 0px 0px, 0px 0px;
+	}
+
+	100%{
+		background-position: 500px 1000px, 400px 400px, 300px 300px;
+	}
+}
+
+@-moz-keyframes snowfall{
+	0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+	100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
+}
+
+@-webkit-keyframes snowfall{
+	0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+	100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
+}
+
+@-ms-keyframes snowfall{
+	0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+	100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
+}
+
+div.login-panel{
+	box-shadow: 5px 5px 5px #aaa;
+	border: none;
+}
+
+div.panel-heading{
+	background-color: #8F496E !important;
+	color: #fff !important;
+	text-align: center;
+}
+
+div h3{
+	font-size: 25pt !important;
+	font-family: 'Indie Flower', cursive;
+}

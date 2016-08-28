@@ -8,9 +8,14 @@ use App\Http\Requests;
 use App\Http\Requests\CateRequest;
 
 use App\Cate;
-
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 class CateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         $cates = Cate::all();
         return view('admin.cate.list', compact('cates'));

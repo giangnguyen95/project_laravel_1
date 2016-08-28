@@ -8,7 +8,7 @@ $("div.alert").delay(3000).slideUp();
 
 $(document).ready(function(){
 	$("#add_image").click(function(){
-		$("#insert").append('<div class="form-group"><input type="file" name="fEditDetail"></div>');
+		$("#insert").append('<div class="form-group"><input type="file" name="fEditDetail[]"></div>');
 	});
 });
 

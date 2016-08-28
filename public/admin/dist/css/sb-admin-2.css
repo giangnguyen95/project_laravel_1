@@ -28,13 +28,24 @@ body {
 }
 
 nav{
-    background-color: #0CF270 !important;
+    background-color: #441952 !important;
+}
+
+li.dropdown > a > i{
+    color: #fff !important;
+    font-weight: bold;
+}
+
+nav>ul>li.dropdown>a:hover{
+    background-color: none !important;
+    color: #000 !important;
 }
 
 a.navbar-brand{
     color: #fff !important;
-    font-size: 14pt;
+    font-size: 20pt;
     font-weight: bold;
+    font-family: 'Indie Flower', cursive;
 }
 
 .navbar-top-links {

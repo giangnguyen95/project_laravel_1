@@ -7,6 +7,8 @@
     <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
     <meta name="author" content="Vu Quoc Tuan">
     <title>Admin - Shopping</title>
+    <!--google font-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     
 
     <!-- Bootstrap Core CSS -->
@@ -69,12 +71,12 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>{{Auth::user()->username}}</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{{url('/logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -128,10 +130,10 @@
                             <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List User</a>
+                                    <a href="{{url('/users')}}">List User</a>
                                 </li>
                                 <li>
-                                    <a href="#">Add User</a>
+                                    <a href="{{url('/users/add')}}">Add User</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

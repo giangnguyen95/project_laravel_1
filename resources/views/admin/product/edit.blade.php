@@ -28,7 +28,7 @@
                     <label>Product Parent</label>
                     <select class="form-control" name="parent">
                         <option value="0">Please Choose Product</option>
-                        <?php cate_parent($cate,1, "--", $product["cate_id"]) ?>
+                        <?php cate_parent($cate,1, "--", $product->cate_id) ?>
                     </select>
                 </div>
             <div class="form-group">

@@ -4,9 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+
+use App\Http\Requests\LoginRequest;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Registrar;
 
 class AuthController extends Controller
 {
@@ -35,9 +43,38 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Guard $auth)
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'getLogout']]);
+        $this->auth = $auth;
+    }
+
+    public function getLogin(){
+        return view('admin.login');
+    }
+
+    public function postLogin(LoginRequest $request){
+        /*$this->validate($request, [
+            'username' => 'required',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);*/
+        $auth = array(
+            'username' => $request->username,
+            'password' => $request->password,
+            'level'    => 1
+        );
+        if($this->auth->attempt($auth)){
+            return redirect('/master');
+        }else{
+            return redirect()->back();
+        }
+    }
+
+    public function getLogout(){
+        $this->auth->logout();
+        Session::flush();
+        return redirect('/login');
     }
 
     /**
