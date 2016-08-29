@@ -27,7 +27,6 @@
                 <div class="form-group">
                     <label>Product Parent</label>
                     <select class="form-control" name="parent">
-                        <option value="0">Please Choose Product</option>
                         <?php cate_parent($cate,1, "--", $product->cate_id) ?>
                     </select>
                 </div>
@@ -67,8 +66,8 @@
                     {{old('txtDescription',$product->description)}}
                 </textarea>
             </div>
-            <button type="submit" class="btn btn-default">Product Edit</button>
-            <button type="reset" class="btn btn-default">Reset</button>    
+            <button type="submit" class="btn btn-default submit">Product Edit</button>
+            <button type="reset" class="btn btn-default reset">Reset</button>    
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-4">

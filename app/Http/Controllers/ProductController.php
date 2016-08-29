@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
-
+use Illuminate\Http\Request;
+//use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Request;
+//use File;
+use Session;
 use App\Product;
 use App\Cate;
 use App\ProductImage;
-//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 //use Illuminate\Support\Facades\Request;
@@ -84,22 +84,22 @@ class ProductController extends Controller
 
         $product = Product::find($id);
         
-        $product->name = Request::input('txtName');
-        $product->alias = Request::input('txtName');
-        $product->price = Request::input('txtPrice');
-        $product->intro = Request::input('txtIntro');
-        $product->content = Request::input('txtContent');
+        $product->name = $request->txtName;
+        $product->alias = $request->txtName;;
+        $product->price = $request->txtPrice;
+        $product->intro = $request->txtIntro;
+        $product->content = $request->txtContent;
         //$product->image = 
-        $product->keywords = Request::input('txtKeywords');
-        $product->description = Request::input('txtDescription');
+        $product->keywords = $request->txtKeywords;
+        $product->description = $request->txtDescription;
         $product->user_id = Auth::user()->id;
-        $product->cate_id = Request::input('parent');
+        $product->cate_id = $request->parent;
         //3 buoc: anh phai duc day len co trong db, duoc di chuyen vao trong folder, anh cu bi xoa di.
-        $img_current = 'resources/upload/'.Request::input('img_current');
-        if(!empty(Request::file('fImages'))){
-            $file_name = Request::file('fImages')->getClientOriginalName();
+        $img_current = 'resources/upload/'.$request->img_current;
+        if(!empty($request->file('fImages'))){
+            $file_name = $request->file('fImages')->getClientOriginalName();
             $product->image = $file_name;
-            Request::file('fImages')->move('resources/upload', $file_name);
+            $request->file('fImages')->move('resources/upload', $file_name);
             if(File::exists($img_current)){
                 File::delete($img_current);
             }
@@ -108,9 +108,9 @@ class ProductController extends Controller
         }
         $product->save();
 
-        if(!empty(Request::file('fEditDetail'))){
+        if(!empty($request->file('fEditDetail'))){
             //print_r(Request::file('fEditDetail'));
-            foreach (Request::file('fEditDetail') as $file) {
+            foreach ($request->file('fEditDetail') as $file) {
                 # code...
                 $product_image = new ProductImage();
                 if(isset($file)){
@@ -122,7 +122,7 @@ class ProductController extends Controller
             } 
         }
 
-        return redirect('/products')->with(['flash_level'=>'success', 'flash_message'=>'Update Product Success!']);
+        return redirect('/products')->with(['flash_level'=>'success','flash_message'=> 'Update Product Success']);
     }
 
     public function destroy($id){

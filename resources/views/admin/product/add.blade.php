@@ -8,13 +8,12 @@
             <div class="form-group">
                 <label>Product Parent</label>
                 <select class="form-control" name="parent">
-                    <option value="0">Please Choose Product</option>
                     <?php cate_parent($cate,1, "--", old('sltParent'))?>
                 </select>
             </div>
             <div class="form-group">
                 <label>Name</label>
-                <input class="form-control" name="txtName" placeholder="Please Enter Username" value="{{old('txtName')}}" required />
+                <input class="form-control" name="txtName" placeholder="Please Enter Username" value="{{old('txtName')}}" required/>
             </div>
             <div class="form-group">
                 <label>Price</label>
@@ -48,8 +47,8 @@
                     {{old('txtDescription')}}
                 </textarea>
             </div>
-            <button type="submit" class="btn btn-default">Product Add</button>
-            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="submit" class="btn btn-default submit">Product Add</button>
+            <button type="reset" class="btn btn-default reset">Reset</button>
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-4">

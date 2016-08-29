@@ -30,8 +30,8 @@
                 <input name="rdoLevel" value="2" type="radio">Member
             </label>
         </div>
-        <button type="submit" class="btn btn-default">User Add</button>
-        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" class="btn btn-default submit">User Add</button>
+        <button type="reset" class="btn btn-default reset">Reset</button>
     </form>
 </div>
 @endsection()

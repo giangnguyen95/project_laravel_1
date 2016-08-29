@@ -29,8 +29,8 @@
                 {{old('txtDescription', $data->description)}}
             </textarea>
         </div>
-        <button type="submit" class="btn btn-default">Category Edit</button>
-        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" class="btn btn-default submit">Category Edit</button>
+        <button type="reset" class="btn btn-default reset">Reset</button>
     </form>
 </div>
 @endsection()            

@@ -15,7 +15,6 @@ Add
         <div class="form-group">
             <label>Category Parent</label>
             <select class="form-control" name="parent">
-                <option value="0">Please Choose Category</option>
                 <!--@foreach($parent as $item)
                 <option value="">{{$item['name']}}</option>
                 @endforeach-->
@@ -40,8 +39,8 @@ Add
                 {{old('txtDescription')}}
             </textarea>
         </div>
-        <button type="submit" class="btn btn-default">Category Add</button>
-        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="submit" class="btn btn-default submit">Category Add</button>
+        <button type="reset" class="btn btn-default reset">Reset</button>
     </form>
 </div>
 @endsection()
