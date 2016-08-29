@@ -137,9 +137,9 @@ class ProductController extends Controller
         return redirect('/products')->with(['flash_level'=>'success', 'flash_message'=>'Delete product success']);
     }
 
-    public function delImg($id){
-        if(Request::ajax()){
-            $idImg = Request::get('idImage');
+    public function delImg($id, Request $request){
+        if($request->ajax()){
+            $idImg = $request->get('idImage');
             $image_detail = ProductImage::find($idImg);
             if(!empty($image_detail)){
                 $img = 'resources/upload/detail/'.$image_detail->image;
